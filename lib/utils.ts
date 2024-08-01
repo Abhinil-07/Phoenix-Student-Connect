@@ -13,7 +13,7 @@ export const connectToDatabase = async () => {
     const { connection } = await mongoose.connect(
       process.env.MONGODB_URI as string,
       {
-        dbName: "client-data",
+        dbName: "phoenix",
       }
     );
     console.log(`Connected to database: ${connection.host}`);

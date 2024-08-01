@@ -1,4 +1,5 @@
 import { auth } from "@/auth";
+import { Button } from "@/components/ui/button";
 
 import Image from "next/image";
 import { redirect } from "next/navigation";
@@ -11,8 +12,9 @@ export default async function Home() {
   console.log(session);
   return (
     <>
-      <div className="flex items-center justify-center h-screen">
+      <div className="flex flex-col items-center justify-center h-screen">
         hello world
+        <Button>Join now</Button>
       </div>
     </>
   );
