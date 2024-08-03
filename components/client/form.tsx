@@ -24,7 +24,7 @@ const LoginClient = () => {
 
           if (!error) {
             toast.success("Login successful", { id: toastId });
-            router.push("/");
+            router.push("/dashboard");
           } else {
             toast.error(String(error), { id: toastId });
           }

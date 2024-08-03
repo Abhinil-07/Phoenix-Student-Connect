@@ -1,11 +1,23 @@
-import React from "react";
+import { auth } from "@/auth";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
-const Dashboard = () => {
+import { redirect } from "next/navigation";
+
+export default async function Home() {
+  const session = await auth();
+  if (!session?.user) {
+    redirect("/login");
+  }
+  console.log(session);
   return (
-    <div className="flex items-center justify-center h-screen">Dashboard</div>
+    <>
+      <div className="flex flex-col items-center justify-center h-screen">
+        hello world
+        <Link href={"/membership"}>
+          <Button>Join now</Button>
+        </Link>
+      </div>
+    </>
   );
-};
-
-
-//TODO : Write a component where the user will download his membership card
-export default Dashboard;
+}
