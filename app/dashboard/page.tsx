@@ -9,7 +9,7 @@ export default async function Home() {
   if (!session?.user) {
     redirect("/login");
   }
-  console.log(session);
+  console.log("session is " + session);
   return (
     <>
       <div className="flex flex-col items-center justify-center h-screen">

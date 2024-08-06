@@ -55,6 +55,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       if (account?.provider === "google") {
         try {
           const { email, name, image, id } = user;
+          console.log("user" + JSON.stringify(user));
+          console.log("account" + JSON.stringify(account));
+          console.log("profile" + JSON.stringify(profile));
+          const { sessionToken } = account;
           await connectToDatabase();
           const userExists = await User.findOne({ email });
           if (!userExists) {
@@ -63,6 +67,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
               name,
               image,
               googleId: id,
+              sessionToken,
             });
           }
           return true;

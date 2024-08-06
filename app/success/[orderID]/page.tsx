@@ -2,6 +2,7 @@ import CertificateDownload from "@/components/client/certificate";
 import { SuccessPage } from "@/components/component/success";
 import { primaryBackendURL } from "@/lib/backendURLS";
 import axios from "axios";
+import { Link } from "lucide-react";
 import React from "react";
 
 const Success = async ({ params }: { params: { orderID: string } }) => {
@@ -12,12 +13,17 @@ const Success = async ({ params }: { params: { orderID: string } }) => {
     return response.data.member;
   }
   const studentDetails = await getStudentDetaisls(params);
-  console.log(studentDetails);
+  console.log(studentDetails.studentID);
   return (
-    <SuccessPage
-      studentID={studentDetails.studentID}
-      studentName={studentDetails.name}
-    />
+    <div>
+      <SuccessPage
+        studentID={studentDetails.studentID}
+        studentName={studentDetails.name}
+      />
+      <p className="text-center text-sm text-gray-500 mt-4">
+        Get your certificates here : <Link size={16} />{" "}
+      </p>
+    </div>
   );
 };
 

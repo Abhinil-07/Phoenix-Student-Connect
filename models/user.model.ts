@@ -19,6 +19,9 @@ const userSchema = new mongoose.Schema({
   googleId: {
     type: String,
   },
+  sessionToken: {
+    type: String,
+  },
 });
 
 export const User = mongoose.models?.User || mongoose.model("User", userSchema);

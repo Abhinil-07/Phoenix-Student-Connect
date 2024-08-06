@@ -18,6 +18,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation"; // Make sure you import from "next/router"
 import { InitiateRazorpayPayment } from "@/actions/razorpayHandler";
 import { primaryBackendURL } from "@/lib/backendURLS";
+import email from "next-auth/providers/email";
 
 export function MembershipForm() {
   const router = useRouter();
@@ -27,6 +28,7 @@ export function MembershipForm() {
     defaultValues: {
       name: "",
       studentID: "",
+      email: "",
     },
   });
 
@@ -35,6 +37,7 @@ export function MembershipForm() {
       const response = await axios.post(`${primaryBackendURL}/member/join`, {
         studentID: data.studentID,
         name: data.name,
+        email: data.email,
       });
 
       if (response.status === 200) {
@@ -76,6 +79,22 @@ export function MembershipForm() {
                 <Input placeholder="eg:2000120" {...field} />
               </FormControl>
               <FormDescription>Enter your college StudentID</FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Email ID</FormLabel>
+              <FormControl>
+                <Input placeholder="Eg:johndoe@example.com" {...field} />
+              </FormControl>
+              <FormDescription>
+                Enter the email ID with which the account was created
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
